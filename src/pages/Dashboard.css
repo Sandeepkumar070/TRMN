@@ -1,0 +1,1629 @@
+/* =========================================================
+   DASHBOARD PAGE
+========================================================= */
+
+.dashboard-page {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  padding:
+    clamp(6px, 0.65vw, 11px);
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 3%,
+        var(--app-bg)
+      ),
+      var(--app-bg)
+    );
+
+  transition:
+    background 0.35s ease;
+}
+
+
+/* =========================================================
+   BACKGROUND EFFECTS
+========================================================= */
+
+.dashboard-effects {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   GRID BACKGROUND
+========================================================= */
+
+.dashboard-grid-lines {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.1;
+
+  background-image:
+
+    linear-gradient(
+      color-mix(
+        in srgb,
+        var(--theme-primary) 15%,
+        transparent
+      )
+      1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 15%,
+        transparent
+      )
+      1px,
+      transparent 1px
+    );
+
+  background-size:
+    38px 38px;
+}
+
+
+/* =========================================================
+   BACKGROUND ORBS
+========================================================= */
+
+.dashboard-orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 10%,
+      transparent
+    );
+
+  animation:
+    dashboardOrbAnimation
+    11s
+    ease-in-out
+    infinite;
+}
+
+
+.orb-one {
+  width: 300px;
+  height: 300px;
+
+  top: -140px;
+  right: -100px;
+}
+
+
+.orb-two {
+  width: 230px;
+  height: 230px;
+
+  bottom: -110px;
+  left: -100px;
+
+  animation-delay: -4s;
+}
+
+
+.orb-three {
+  width: 150px;
+  height: 150px;
+
+  top: 42%;
+  left: 48%;
+
+  opacity: 0.25;
+
+  animation-delay: -7s;
+}
+
+
+@keyframes dashboardOrbAnimation {
+
+  0%,
+  100% {
+    transform:
+      translate(0, 0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(20px, -16px)
+      scale(1.08);
+  }
+}
+
+
+/* =========================================================
+   EXACT 3 x 3 GRID
+========================================================= */
+
+.location-grid {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  grid-template-rows:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(
+      6px,
+      0.65vw,
+      11px
+    );
+}
+
+
+/* =========================================================
+   LOCATION CARD
+========================================================= */
+
+.location-card {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 44%)
+    1px
+    minmax(0, 56%);
+
+  align-items: center;
+
+  gap:
+    clamp(
+      8px,
+      0.9vw,
+      15px
+    );
+
+  padding:
+    clamp(
+      10px,
+      1vw,
+      17px
+    );
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--theme-primary) 20%,
+      var(--border-color)
+    );
+
+  border-radius:
+    clamp(
+      12px,
+      1vw,
+      18px
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 3%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+
+  color:
+    var(--text-primary);
+
+  text-align: left;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 18px
+    rgba(15, 23, 42, 0.055);
+
+  opacity: 0;
+
+  transform:
+    translateY(18px)
+    scale(0.975);
+
+  animation:
+    locationCardEntry
+    0.55s
+    cubic-bezier(
+      0.16,
+      1,
+      0.3,
+      1
+    )
+    forwards;
+
+  animation-delay:
+    calc(
+      var(--card-index) * 0.055s
+    );
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+@keyframes locationCardEntry {
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+  }
+}
+
+
+/* =========================================================
+   CARD HOVER
+========================================================= */
+
+.location-card:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 55%,
+      var(--border-color)
+    );
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 8%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+
+  box-shadow:
+    0 12px 28px
+    color-mix(
+      in srgb,
+      var(--theme-primary) 14%,
+      transparent
+    );
+}
+
+
+.location-card:active {
+  transform:
+    scale(0.99);
+}
+
+
+/* =========================================================
+   LEFT SIDE
+========================================================= */
+
+.card-left {
+  position: relative;
+
+  z-index: 3;
+
+  min-width: 0;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap:
+    clamp(
+      13px,
+      1.35vw,
+      22px
+    );
+}
+
+
+/* =========================================================
+   LOCATION SECTION
+========================================================= */
+
+.location-section {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      8px,
+      0.75vw,
+      12px
+    );
+}
+
+
+/* =========================================================
+   LOCATION ICON
+========================================================= */
+
+.location-icon {
+  position: relative;
+
+  width:
+    clamp(
+      31px,
+      2.6vw,
+      43px
+    );
+
+  height:
+    clamp(
+      31px,
+      2.6vw,
+      43px
+    );
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius:
+    clamp(
+      8px,
+      0.8vw,
+      12px
+    );
+
+  color:
+    var(--theme-primary);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 10%,
+      var(--surface)
+    );
+}
+
+
+.location-icon svg {
+  width:
+    clamp(
+      14px,
+      1.3vw,
+      20px
+    );
+
+  height:
+    clamp(
+      14px,
+      1.3vw,
+      20px
+    );
+}
+
+
+/* =========================================================
+   LOCATION ICON PULSE
+========================================================= */
+
+.location-icon-pulse {
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  border:
+    1px solid
+    var(--theme-primary);
+
+  animation:
+    locationPulse
+    2s
+    ease-out
+    infinite;
+}
+
+
+@keyframes locationPulse {
+
+  0% {
+    opacity: 0.45;
+
+    transform:
+      scale(0.9);
+  }
+
+  70% {
+    opacity: 0;
+
+    transform:
+      scale(1.3);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   LOCATION TEXT
+========================================================= */
+
+.location-content {
+  min-width: 0;
+}
+
+
+.small-label {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(
+      6px,
+      0.55vw,
+      9px
+    );
+
+  font-weight: 800;
+
+  letter-spacing:
+    1.4px;
+}
+
+
+.location-content h2 {
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size:
+    clamp(
+      18px,
+      1.7vw,
+      28px
+    );
+
+  line-height: 1;
+
+  font-weight: 850;
+
+  letter-spacing:
+    -0.7px;
+
+  transition:
+    color 0.25s ease;
+}
+
+
+.location-card:hover
+.location-content h2 {
+  color:
+    var(--theme-primary);
+}
+
+
+/* =========================================================
+   TOTAL RACK
+   NO INNER CARD
+========================================================= */
+
+.total-rack-section {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      8px,
+      0.8vw,
+      13px
+    );
+}
+
+
+.total-rack-section > svg {
+  width:
+    clamp(
+      20px,
+      1.8vw,
+      28px
+    );
+
+  height:
+    clamp(
+      20px,
+      1.8vw,
+      28px
+    );
+
+  flex-shrink: 0;
+
+  color:
+    var(--theme-primary);
+}
+
+
+.rack-count {
+  display: flex;
+
+  align-items: baseline;
+
+  gap:
+    clamp(
+      5px,
+      0.45vw,
+      8px
+    );
+}
+
+
+.rack-count strong {
+  color:
+    var(--theme-primary);
+
+  font-size:
+    clamp(
+      20px,
+      1.9vw,
+      31px
+    );
+
+  line-height: 1;
+
+  font-weight: 850;
+}
+
+
+.rack-count span {
+  color:
+    var(--text-secondary);
+
+  font-size:
+    clamp(
+      7px,
+      0.62vw,
+      10px
+    );
+
+  font-weight: 750;
+
+  letter-spacing:
+    0.6px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   SEPARATOR
+========================================================= */
+
+.card-separator {
+  width: 1px;
+
+  height: 70%;
+
+  align-self: center;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 30%,
+        var(--border-color)
+      ),
+      transparent
+    );
+}
+
+
+/* =========================================================
+   STATUS SECTION
+========================================================= */
+
+.status-section {
+  position: relative;
+
+  z-index: 3;
+
+  min-width: 0;
+
+  height: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
+  padding-left:
+    clamp(
+      4px,
+      0.3vw,
+      7px
+    );
+}
+
+
+/* =========================================================
+   CURRENT STATUS TITLE
+========================================================= */
+
+.status-title {
+  margin-bottom:
+    clamp(
+      8px,
+      0.75vw,
+      12px
+    );
+
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(
+      6px,
+      0.52vw,
+      8px
+    );
+
+  font-weight: 800;
+
+  letter-spacing:
+    1.3px;
+}
+
+
+/* =========================================================
+   STATUS CONTENT
+========================================================= */
+
+.status-content {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      9px,
+      0.9vw,
+      14px
+    );
+}
+
+
+/* =========================================================
+   STATUS ICON
+========================================================= */
+
+.status-icon {
+  width:
+    clamp(
+      32px,
+      2.8vw,
+      46px
+    );
+
+  height:
+    clamp(
+      32px,
+      2.8vw,
+      46px
+    );
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  color:
+    var(--status-color);
+}
+
+
+.status-icon svg {
+  width:
+    clamp(
+      19px,
+      1.7vw,
+      28px
+    );
+
+  height:
+    clamp(
+      19px,
+      1.7vw,
+      28px
+    );
+}
+
+
+/* =========================================================
+   STATUS NAME
+========================================================= */
+
+.status-name {
+  min-width: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(
+      7px,
+      0.65vw,
+      10px
+    );
+}
+
+
+.status-name strong {
+  color:
+    var(--status-color);
+
+  font-size:
+    clamp(
+      13px,
+      1.2vw,
+      19px
+    );
+
+  line-height: 1.15;
+
+  font-weight: 850;
+
+  letter-spacing: 0.15px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   STATUS INDICATOR
+   FIXED STATUS COLORS
+   DO NOT FOLLOW APPLICATION THEME
+========================================================= */
+
+.status-indicator {
+  position: relative;
+
+  width:
+    clamp(
+      8px,
+      0.6vw,
+      10px
+    );
+
+  height:
+    clamp(
+      8px,
+      0.6vw,
+      10px
+    );
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--status-color);
+
+  box-shadow:
+    0 0 7px
+    var(--status-color);
+
+  animation:
+    statusBlink
+    1.05s
+    ease-in-out
+    infinite;
+}
+
+
+/* Outer pulse */
+
+.status-indicator::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    var(--status-color);
+
+  animation:
+    statusOuterPulse
+    1.4s
+    ease-out
+    infinite;
+}
+
+
+/* Blink */
+
+@keyframes statusBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+    box-shadow:
+      0 0 6px
+      var(--status-color);
+  }
+
+  50% {
+    opacity: 0.25;
+
+    transform:
+      scale(0.72);
+
+    box-shadow:
+      0 0 2px
+      var(--status-color);
+  }
+}
+
+
+/* pulse */
+
+@keyframes statusOuterPulse {
+
+  0% {
+    opacity: 0.75;
+
+    transform:
+      scale(0.7);
+  }
+
+  75% {
+    opacity: 0;
+
+    transform:
+      scale(1.5);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   FIXED STATUS COLORS
+========================================================= */
+
+
+/* FULL RACK = GREEN */
+
+.status-full {
+  --status-color: #16a34a;
+}
+
+
+/* EMPTY RACK = RED */
+
+.status-empty {
+  --status-color: #ef4444;
+}
+
+
+/* START IN BIN = BLUE */
+
+.status-in {
+  --status-color: #2563eb;
+}
+
+
+/* START OUT BIN = YELLOW */
+
+.status-out {
+  --status-color: #f5b800;
+}
+
+
+/* =========================================================
+   STATUS-SPECIFIC GLOW
+========================================================= */
+
+.status-full
+.status-icon {
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(22, 163, 74, 0.25)
+    );
+}
+
+
+.status-empty
+.status-icon {
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(239, 68, 68, 0.25)
+    );
+}
+
+
+.status-in
+.status-icon {
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(37, 99, 235, 0.25)
+    );
+}
+
+
+.status-out
+.status-icon {
+  filter:
+    drop-shadow(
+      0 0 5px
+      rgba(245, 184, 0, 0.28)
+    );
+}
+
+
+/* =========================================================
+   CARD SHINE
+========================================================= */
+
+.card-shine {
+  position: absolute;
+
+  top: -80%;
+  left: -65%;
+
+  width: 25%;
+  height: 280%;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  transform:
+    rotate(23deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        255,
+        255,
+        0.25
+      ),
+      transparent
+    );
+
+  transition:
+    left 0.75s ease;
+}
+
+
+.location-card:hover
+.card-shine {
+  left: 145%;
+}
+
+
+/* =========================================================
+   DECORATIONS
+========================================================= */
+
+.card-decoration {
+  position: absolute;
+
+  pointer-events: none;
+
+  border-radius: 50%;
+
+  transition:
+    transform 0.4s ease;
+}
+
+
+.decoration-one {
+  width:
+    clamp(
+      80px,
+      7vw,
+      115px
+    );
+
+  height:
+    clamp(
+      80px,
+      7vw,
+      115px
+    );
+
+  right: -38px;
+  bottom: -45px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 6%,
+      transparent
+    );
+}
+
+
+.decoration-two {
+  width:
+    clamp(
+      35px,
+      3.5vw,
+      55px
+    );
+
+  height:
+    clamp(
+      35px,
+      3.5vw,
+      55px
+    );
+
+  right: 25px;
+  bottom: -27px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--theme-primary) 14%,
+      transparent
+    );
+}
+
+
+.location-card:hover
+.decoration-one {
+  transform:
+    scale(1.2);
+}
+
+
+.location-card:hover
+.decoration-two {
+  transform:
+    scale(1.15);
+}
+
+
+/* =========================================================
+   BOTTOM THEME ANIMATION
+========================================================= */
+
+.card-bottom-line {
+  position: absolute;
+
+  left: 10px;
+  right: 10px;
+  bottom: 4px;
+
+  height: 2px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 7%,
+      transparent
+    );
+}
+
+
+.card-bottom-line span {
+  display: block;
+
+  width: 30%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--theme-primary),
+      transparent
+    );
+
+  animation:
+    bottomLineMovement
+    3s
+    linear
+    infinite;
+}
+
+
+@keyframes bottomLineMovement {
+
+  from {
+    transform:
+      translateX(-130%);
+  }
+
+  to {
+    transform:
+      translateX(430%);
+  }
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+html[data-mode="dark"]
+.location-card {
+  box-shadow:
+    0 7px 22px
+    rgba(0, 0, 0, 0.22);
+}
+
+
+html[data-mode="dark"]
+.card-shine {
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        255,
+        255,
+        0.06
+      ),
+      transparent
+    );
+}
+
+
+/*
+   Important:
+   Status colors intentionally remain fixed
+   even in dark mode.
+*/
+
+html[data-mode="dark"]
+.status-full {
+  --status-color: #22c55e;
+}
+
+
+html[data-mode="dark"]
+.status-empty {
+  --status-color: #f87171;
+}
+
+
+html[data-mode="dark"]
+.status-in {
+  --status-color: #3b82f6;
+}
+
+
+html[data-mode="dark"]
+.status-out {
+  --status-color: #facc15;
+}
+
+
+/* =========================================================
+   SMALL / SHORT LAPTOP
+========================================================= */
+
+@media (max-height: 800px) {
+
+  .dashboard-page {
+    padding: 5px;
+  }
+
+
+  .location-grid {
+    gap: 5px;
+  }
+
+
+  .location-card {
+    padding: 8px;
+
+    gap: 7px;
+  }
+
+
+  .card-left {
+    gap: 8px;
+  }
+
+
+  .location-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .location-icon svg {
+    width: 14px;
+    height: 14px;
+  }
+
+
+  .location-content h2 {
+    font-size: 17px;
+  }
+
+
+  .rack-count strong {
+    font-size: 18px;
+  }
+
+
+  .total-rack-section > svg {
+    width: 18px;
+    height: 18px;
+  }
+
+
+  .status-title {
+    margin-bottom: 5px;
+  }
+
+
+  .status-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+
+  .status-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+
+  .status-name strong {
+    font-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE WIDTH
+========================================================= */
+
+@media (max-width: 1200px) {
+
+  .location-card {
+    grid-template-columns:
+      minmax(0, 42%)
+      1px
+      minmax(0, 58%);
+
+    gap: 6px;
+
+    padding: 7px;
+  }
+
+
+  .rack-count span {
+    font-size: 7px;
+  }
+
+
+  .status-name strong {
+    font-size:
+      clamp(
+        10px,
+        1vw,
+        15px
+      );
+  }
+}
+
+
+/* =========================================================
+   SMALL SCREEN
+   STILL 3 x 3
+========================================================= */
+
+@media (max-width: 750px) {
+
+  .dashboard-page {
+    padding: 3px;
+  }
+
+
+  .location-grid {
+    gap: 3px;
+  }
+
+
+  .location-card {
+    grid-template-columns:
+      minmax(0, 43%)
+      1px
+      minmax(0, 57%);
+
+    gap: 3px;
+
+    padding: 5px;
+
+    border-radius: 8px;
+  }
+
+
+  .card-left {
+    gap: 5px;
+  }
+
+
+  .location-icon {
+    width: 21px;
+    height: 21px;
+
+    border-radius: 5px;
+  }
+
+
+  .location-icon svg {
+    width: 11px;
+    height: 11px;
+  }
+
+
+  .small-label {
+    font-size: 4px;
+
+    letter-spacing: 0.4px;
+  }
+
+
+  .location-content h2 {
+    font-size:
+      clamp(
+        10px,
+        2.7vw,
+        15px
+      );
+  }
+
+
+  .total-rack-section {
+    gap: 4px;
+  }
+
+
+  .total-rack-section > svg {
+    width: 13px;
+    height: 13px;
+  }
+
+
+  .rack-count {
+    gap: 2px;
+  }
+
+
+  .rack-count strong {
+    font-size: 11px;
+  }
+
+
+  .rack-count span {
+    font-size: 4px;
+
+    letter-spacing: 0;
+  }
+
+
+  .status-title {
+    font-size: 4px;
+
+    margin-bottom: 3px;
+
+    letter-spacing: 0.3px;
+  }
+
+
+  .status-content {
+    gap: 3px;
+  }
+
+
+  .status-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+
+  .status-icon svg {
+    width: 11px;
+    height: 11px;
+  }
+
+
+  .status-name {
+    gap: 4px;
+  }
+
+
+  .status-indicator {
+    width: 5px;
+    height: 5px;
+  }
+
+
+  .status-name strong {
+    font-size:
+      clamp(
+        6px,
+        1.6vw,
+        9px
+      );
+
+    white-space: normal;
+  }
+
+
+  .decoration-two {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   EXTRA SHORT SCREEN
+========================================================= */
+
+@media (max-height: 650px) {
+
+  .location-card {
+    padding: 5px;
+  }
+
+
+  .card-left {
+    gap: 4px;
+  }
+
+
+  .location-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+
+  .location-content h2 {
+    font-size: 14px;
+  }
+
+
+  .rack-count strong {
+    font-size: 13px;
+  }
+
+
+  .status-icon {
+    width: 21px;
+    height: 21px;
+  }
+
+
+  .status-name strong {
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .location-card,
+  .dashboard-orb,
+  .location-icon-pulse,
+  .status-indicator,
+  .status-indicator::before,
+  .card-bottom-line span {
+    animation: none;
+  }
+}

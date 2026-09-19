@@ -1,0 +1,52 @@
+.details-layout {
+  width: 100%;
+  height: 100dvh;
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  background: var(--app-bg);
+}
+
+
+/* =========================================================
+   CONTENT BETWEEN HEADER AND FOOTER
+========================================================= */
+
+.details-page-content {
+  position: fixed;
+
+  top: var(--header-height, 74px);
+  left: 0;
+  right: 0;
+  bottom: var(--footer-height, 38px);
+
+  min-width: 0;
+  min-height: 0;
+
+  overflow: hidden;
+
+  padding: 0;
+
+  background: var(--app-bg);
+
+  color: var(--text-primary);
+}
+
+
+/* IMPORTANT:
+   Do not enable scrolling here.
+*/
+
+.details-page-content,
+.details-layout {
+  scrollbar-width: none;
+}
+
+
+.details-page-content::-webkit-scrollbar,
+.details-layout::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,45 @@
+TRMN RACK MANAGEMENT SYSTEM - FINAL UPDATE
+
+AUTH / ACCESS
+- New responsive full-screen Login page using the approved dark corporate building style.
+- Removed top-left Pitech logo, top-right marketing text, and TRMN building sign from the background composition.
+- TRMN branding is shown cleanly above the form.
+- Pitech remains only in the bottom-right "Powered by Pitech" area.
+- Login page does not use page scrolling.
+- Username/password login.
+- Show/hide password.
+- Remember username/session option.
+- Forgot-password flow for locally registered demo users.
+- New Register User page.
+- Username, Password, Confirm Password.
+- USER / ADMIN access type.
+- ADMIN defaults to all system pages.
+- USER defaults to Dashboard, Tag History and Settings.
+- Page access can be customized by checkbox for either role.
+- Registration logs the account in and opens the first allowed page.
+- Direct URL access to unauthorized pages is blocked.
+- Sidebar only shows pages granted to the logged-in account.
+- Logout is available from the sidebar.
+
+TAG HISTORY
+- Shows maximum latest 100 matching records.
+- Filters: Tag ID, From Date, To Date, Location.
+- Clear filters button.
+- Shows tag type, location, rack position, status, action, details and date/time.
+
+NAVIGATION / SETTINGS
+- Reports page removed from the navigation.
+- Theme controls moved into Settings page.
+- Light/Dark mode and accent theme color remain available from Settings.
+
+RUN PROJECT
+1. Extract the ZIP.
+2. Open Tag_Assign_Project\Tag_Management in PowerShell or CMD.
+3. Run START_PROJECT.bat
+   OR run manually:
+      npm install
+      npm run dev
+4. Open the Local URL shown by Vite, normally http://localhost:5173/
+
+NOTE
+This project currently stores demo users, roles and permissions in browser localStorage/sessionStorage because no authentication backend API was included in the supplied project. For production, connect authentication to ASP.NET Core + database and store password hashes server-side.

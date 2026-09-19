@@ -1,0 +1,1566 @@
+/* =========================================================
+   PAGE
+========================================================= */
+
+.rack-details-page {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-rows:
+    clamp(44px, 6vh, 60px)
+    minmax(0, 1fr);
+
+  padding:
+    clamp(4px, 0.45vw, 8px);
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 3%,
+        var(--app-bg)
+      ),
+      var(--app-bg)
+    );
+
+  color:
+    var(--text-primary);
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.rack-details-background {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  pointer-events: none;
+}
+
+
+.rack-background-grid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.07;
+
+  background-image:
+    linear-gradient(
+      color-mix(
+        in srgb,
+        var(--theme-primary) 14%,
+        transparent
+      )
+      1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 14%,
+        transparent
+      )
+      1px,
+      transparent 1px
+    );
+
+  background-size:
+    32px 32px;
+}
+
+
+.rack-orb {
+  position: absolute;
+
+  border-radius: 50%;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 8%,
+      transparent
+    );
+
+  animation:
+    rackOrbFloat
+    10s
+    ease-in-out
+    infinite;
+}
+
+
+.rack-orb-one {
+  width: 260px;
+  height: 260px;
+
+  right: -100px;
+  top: -140px;
+}
+
+
+.rack-orb-two {
+  width: 190px;
+  height: 190px;
+
+  left: -80px;
+  bottom: -90px;
+
+  animation-delay: -5s;
+}
+
+
+@keyframes rackOrbFloat {
+  50% {
+    transform:
+      translate(
+        18px,
+        -15px
+      )
+      scale(1.07);
+  }
+}
+
+
+/* =========================================================
+   HEADER INSIDE PAGE
+========================================================= */
+
+.rack-details-header {
+  position: relative;
+
+  z-index: 5;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(12px, 1.4vw, 28px);
+
+  padding:
+    0
+    clamp(4px, 0.5vw, 10px);
+
+  border-bottom:
+    1px solid
+    var(--border-color);
+}
+
+
+/* =========================================================
+   SELECTED LOCATION
+========================================================= */
+
+.selected-location {
+  margin-right: auto;
+
+  min-width: 0;
+}
+
+
+.selected-location span {
+  display: block;
+
+  margin-bottom: 2px;
+
+  color:
+    var(--theme-primary);
+
+  font-size:
+    clamp(5px, 0.48vw, 8px);
+
+  line-height: 1;
+
+  font-weight: 850;
+
+  letter-spacing: 1.2px;
+}
+
+
+.selected-location h1 {
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size:
+    clamp(17px, 1.65vw, 27px);
+
+  line-height: 1;
+
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   TOTAL RACK
+========================================================= */
+
+.location-summary {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(4px, 0.45vw, 8px);
+
+  white-space: nowrap;
+}
+
+
+.summary-rack-icon {
+  width:
+    clamp(20px, 1.7vw, 29px);
+
+  height:
+    clamp(20px, 1.7vw, 29px);
+
+  display: grid;
+
+  place-items: center;
+
+  color:
+    var(--theme-primary);
+}
+
+
+.summary-rack-icon svg {
+  width:
+    clamp(14px, 1.2vw, 19px);
+
+  height:
+    clamp(14px, 1.2vw, 19px);
+}
+
+
+.location-summary strong {
+  color:
+    var(--theme-primary);
+
+  font-size:
+    clamp(15px, 1.45vw, 23px);
+
+  line-height: 1;
+}
+
+
+.location-summary span {
+  color:
+    var(--text-secondary);
+
+  font-size:
+    clamp(6px, 0.5vw, 9px);
+
+  font-weight: 750;
+}
+
+
+/* =========================================================
+   CAPACITY
+========================================================= */
+
+.location-bin-capacity {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  white-space: nowrap;
+}
+
+
+.location-bin-capacity span {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(5px, 0.4vw, 7px);
+
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+}
+
+
+.location-bin-capacity strong {
+  color:
+    var(--theme-primary);
+
+  font-size:
+    clamp(15px, 1.4vw, 22px);
+
+  line-height: 1;
+}
+
+
+/* =========================================================
+   AUTO RACK GRID
+
+   NO SCROLLBAR.
+
+   JS supplies:
+   --rack-columns
+   --rack-rows
+========================================================= */
+
+.rack-details-grid {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      var(--rack-columns),
+      minmax(0, 1fr)
+    );
+
+  grid-template-rows:
+    repeat(
+      var(--rack-rows),
+      minmax(0, 1fr)
+    );
+
+  gap:
+    clamp(3px, 0.38vw, 7px);
+
+  padding-top:
+    clamp(3px, 0.35vw, 6px);
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   RACK CARD
+========================================================= */
+
+.rack-detail-card {
+  /*
+     PARTIAL DEFAULT = YELLOW
+  */
+
+  --rack-status-color:
+    #f5b800;
+
+  position: relative;
+
+  min-width: 0;
+  min-height: 0;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    clamp(30px, 2.7vw, 46px);
+
+  gap:
+    clamp(3px, 0.42vw, 7px);
+
+  padding:
+    clamp(5px, 0.55vw, 9px);
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--theme-primary) 20%,
+      var(--border-color)
+    );
+
+  border-radius:
+    clamp(6px, 0.65vw, 11px);
+
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 3%,
+        var(--surface)
+      ),
+      var(--surface)
+    );
+
+  box-shadow:
+    0 3px 11px
+    rgba(15, 23, 42, 0.045);
+
+  opacity: 0;
+
+  transform:
+    translateY(8px);
+
+  animation:
+    rackCardEntry
+    0.35s ease
+    forwards;
+
+  animation-delay:
+    calc(
+      var(--rack-index) *
+      0.008s
+    );
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+@keyframes rackCardEntry {
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+
+.rack-detail-card:hover {
+  z-index: 10;
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 65%,
+      var(--border-color)
+    );
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 7%,
+      var(--surface)
+    );
+
+  box-shadow:
+    0 7px 18px
+    color-mix(
+      in srgb,
+      var(--theme-primary) 12%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   FIXED STATUS COLORS
+========================================================= */
+
+.rack-full {
+  --rack-status-color:
+    #16a34a;
+}
+
+
+.rack-partial {
+  --rack-status-color:
+    #f5b800;
+}
+
+
+.rack-empty {
+  --rack-status-color:
+    #ef4444;
+}
+
+
+/* =========================================================
+   LEFT CONTENT
+========================================================= */
+
+.rack-detail-left {
+  position: relative;
+
+  z-index: 3;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-rows:
+    auto
+    1fr
+    auto
+    auto;
+
+  align-items: center;
+}
+
+
+/* =========================================================
+   TOP ROW
+========================================================= */
+
+.rack-top-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  min-width: 0;
+}
+
+
+.rack-icon-box {
+  width:
+    clamp(20px, 1.55vw, 28px);
+
+  height:
+    clamp(20px, 1.55vw, 28px);
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius:
+    clamp(5px, 0.45vw, 7px);
+
+  color:
+    var(--theme-primary);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 10%,
+      var(--surface)
+    );
+}
+
+
+.rack-icon-box svg {
+  width:
+    clamp(11px, 0.9vw, 15px);
+
+  height:
+    clamp(11px, 0.9vw, 15px);
+}
+
+
+.rack-sequence {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(4px, 0.38vw, 6px);
+
+  line-height: 1;
+
+  font-weight: 850;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================================
+   POSITION
+========================================================= */
+
+.rack-position-section {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  gap: 2px;
+}
+
+
+.rack-small-label {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(4px, 0.37vw, 6px);
+
+  line-height: 1;
+
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+}
+
+
+.rack-position-section strong {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color:
+    var(--text-primary);
+
+  font-size:
+    clamp(8px, 0.85vw, 14px);
+
+  line-height: 1.05;
+
+  font-weight: 850;
+}
+
+
+/* =========================================================
+   BIN QTY
+========================================================= */
+
+.bin-quantity-section {
+  display: flex;
+
+  align-items: baseline;
+
+  gap:
+    clamp(3px, 0.3vw, 5px);
+
+  min-width: 0;
+}
+
+
+.bin-label {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(4px, 0.38vw, 6px);
+
+  line-height: 1;
+
+  font-weight: 850;
+
+  letter-spacing: 0.4px;
+}
+
+
+.bin-number {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 2px;
+}
+
+
+.bin-capacity-number {
+  color:
+    var(--text-secondary);
+
+  font-size:
+    clamp(10px, 0.95vw, 16px);
+
+  line-height: 1;
+
+  font-weight: 800;
+}
+
+
+.bin-slash {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(8px, 0.7vw, 12px);
+}
+
+
+.bin-number strong {
+  color:
+    var(--rack-status-color);
+
+  font-size:
+    clamp(13px, 1.15vw, 19px);
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.rack-status-line {
+  display: flex;
+
+  align-items: center;
+
+  gap:
+    clamp(3px, 0.3vw, 5px);
+
+  min-width: 0;
+}
+
+
+.rack-status-line strong {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  color:
+    var(--rack-status-color);
+
+  font-size:
+    clamp(5px, 0.48vw, 8px);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: 0.4px;
+}
+
+
+/* =========================================================
+   STATUS BLINK
+========================================================= */
+
+.rack-status-indicator {
+  position: relative;
+
+  width:
+    clamp(5px, 0.42vw, 7px);
+
+  height:
+    clamp(5px, 0.42vw, 7px);
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background:
+    var(--rack-status-color);
+
+  box-shadow:
+    0 0 6px
+    var(--rack-status-color);
+
+  animation:
+    rackStatusBlink
+    1s ease-in-out
+    infinite;
+}
+
+
+.rack-status-indicator::before {
+  content: "";
+
+  position: absolute;
+
+  inset: -3px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid
+    var(--rack-status-color);
+
+  animation:
+    rackStatusOuterPulse
+    1.35s ease-out
+    infinite;
+}
+
+
+@keyframes rackStatusBlink {
+  0%,
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+  50% {
+    opacity: 0.25;
+
+    transform:
+      scale(0.7);
+  }
+}
+
+
+@keyframes rackStatusOuterPulse {
+  0% {
+    opacity: 0.7;
+
+    transform:
+      scale(0.7);
+  }
+
+  75% {
+    opacity: 0;
+
+    transform:
+      scale(1.65);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   STACK
+========================================================= */
+
+.rack-stack-section {
+  position: relative;
+
+  z-index: 3;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-rows:
+    auto
+    minmax(0, 1fr);
+
+  align-items: stretch;
+
+  justify-items: center;
+
+  gap: 2px;
+}
+
+
+.stack-heading {
+  color:
+    var(--muted-text);
+
+  font-size:
+    clamp(3px, 0.3vw, 5px);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: 0.45px;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   1 COLUMN x 8 ROW BIN STACK
+========================================================= */
+
+.bin-stack {
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr;
+
+  grid-template-rows:
+    repeat(
+      var(--bin-count),
+      minmax(0, 1fr)
+    );
+
+  gap: 1px;
+
+  padding: 2px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--rack-status-color) 40%,
+      var(--border-color)
+    );
+
+  border-radius:
+    clamp(3px, 0.3vw, 5px);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--rack-status-color) 3%,
+      var(--surface)
+    );
+}
+
+
+/* =========================================================
+   STACK ROW
+========================================================= */
+
+.bin-stack-row {
+  min-height: 0;
+
+  overflow: hidden;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius:
+    1px;
+
+  line-height: 1;
+}
+
+
+.bin-stack-row span {
+  font-size:
+    clamp(2px, 0.23vw, 4px);
+
+  line-height: 1;
+
+  font-weight: 900;
+}
+
+
+/* FILLED */
+
+.bin-stack-row.filled {
+  color: #ffffff;
+
+  background:
+    var(--rack-status-color);
+
+  border:
+    1px solid
+    var(--rack-status-color);
+}
+
+
+/* EMPTY POSITION */
+
+.bin-stack-row.empty {
+  color:
+    var(--muted-text);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--border-color) 38%,
+      transparent
+    );
+
+  border:
+    1px dashed
+    color-mix(
+      in srgb,
+      var(--muted-text) 28%,
+      transparent
+    );
+}
+
+
+/* =========================================================
+   THEME BOTTOM LINE
+========================================================= */
+
+.rack-card-bottom-line {
+  position: absolute;
+
+  left: 5px;
+  right: 5px;
+  bottom: 2px;
+
+  height: 1px;
+
+  overflow: hidden;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 6%,
+      transparent
+    );
+}
+
+
+.rack-card-bottom-line span {
+  display: block;
+
+  width: 30%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--theme-primary),
+      transparent
+    );
+
+  animation:
+    rackBottomMove
+    3s linear infinite;
+}
+
+
+@keyframes rackBottomMove {
+  from {
+    transform:
+      translateX(-130%);
+  }
+
+  to {
+    transform:
+      translateX(430%);
+  }
+}
+
+
+/* =========================================================
+   SHINE
+========================================================= */
+
+.rack-card-shine {
+  position: absolute;
+
+  top: -100%;
+  left: -70%;
+
+  width: 25%;
+  height: 320%;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  transform:
+    rotate(22deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(
+        255,
+        255,
+        255,
+        0.18
+      ),
+      transparent
+    );
+
+  transition:
+    left 0.6s ease;
+}
+
+
+.rack-detail-card:hover
+.rack-card-shine {
+  left: 150%;
+}
+
+
+/* =========================================================
+   COMPACT MODE
+========================================================= */
+
+.density-compact
+.rack-detail-card {
+  grid-template-columns:
+    minmax(0, 1fr)
+    clamp(28px, 2.4vw, 40px);
+
+  padding:
+    clamp(4px, 0.45vw, 7px);
+}
+
+
+.density-compact
+.rack-detail-left {
+  grid-template-rows:
+    auto
+    1fr
+    auto
+    auto;
+}
+
+
+.density-compact
+.rack-icon-box {
+  width: 22px;
+  height: 22px;
+}
+
+
+.density-compact
+.rack-position-section strong {
+  font-size:
+    clamp(7px, 0.7vw, 11px);
+}
+
+
+.density-compact
+.bin-capacity-number {
+  font-size:
+    clamp(8px, 0.75vw, 12px);
+}
+
+
+.density-compact
+.bin-number strong {
+  font-size:
+    clamp(10px, 0.9vw, 15px);
+}
+
+
+/* =========================================================
+   DENSE MODE
+========================================================= */
+
+.density-dense
+.rack-detail-card {
+  grid-template-columns:
+    minmax(0, 1fr)
+    clamp(24px, 2vw, 34px);
+
+  gap: 3px;
+
+  padding:
+    clamp(3px, 0.35vw, 5px);
+
+  border-radius:
+    clamp(4px, 0.45vw, 7px);
+}
+
+
+.density-dense
+.rack-icon-box {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 4px;
+}
+
+
+.density-dense
+.rack-icon-box svg {
+  width: 10px;
+  height: 10px;
+}
+
+
+.density-dense
+.rack-small-label {
+  font-size: 3px;
+}
+
+
+.density-dense
+.rack-position-section strong {
+  font-size:
+    clamp(6px, 0.58vw, 9px);
+}
+
+
+.density-dense
+.bin-label {
+  font-size: 3px;
+}
+
+
+.density-dense
+.bin-capacity-number {
+  font-size:
+    clamp(7px, 0.62vw, 10px);
+}
+
+
+.density-dense
+.bin-number strong {
+  font-size:
+    clamp(9px, 0.75vw, 12px);
+}
+
+
+.density-dense
+.rack-status-line strong {
+  font-size:
+    clamp(4px, 0.38vw, 6px);
+}
+
+
+.density-dense
+.rack-status-indicator {
+  width: 5px;
+  height: 5px;
+}
+
+
+.density-dense
+.stack-heading {
+  font-size: 3px;
+}
+
+
+/* =========================================================
+   ULTRA COMPACT
+   Used for very high rack counts / small screens.
+========================================================= */
+
+.density-ultra
+.rack-detail-card {
+  grid-template-columns:
+    minmax(0, 1fr)
+    clamp(20px, 1.7vw, 28px);
+
+  gap: 2px;
+
+  padding:
+    clamp(2px, 0.28vw, 4px);
+
+  border-radius:
+    clamp(3px, 0.35vw, 6px);
+}
+
+
+.density-ultra
+.rack-icon-box {
+  width: 16px;
+  height: 16px;
+
+  border-radius: 3px;
+}
+
+
+.density-ultra
+.rack-icon-box svg {
+  width: 8px;
+  height: 8px;
+}
+
+
+.density-ultra
+.rack-sequence {
+  font-size: 3px;
+}
+
+
+.density-ultra
+.rack-small-label {
+  font-size: 2.8px;
+
+  letter-spacing: 0.2px;
+}
+
+
+.density-ultra
+.rack-position-section strong {
+  font-size:
+    clamp(5px, 0.48vw, 8px);
+}
+
+
+.density-ultra
+.bin-label {
+  display: none;
+}
+
+
+.density-ultra
+.bin-capacity-number {
+  font-size:
+    clamp(6px, 0.5vw, 8px);
+}
+
+
+.density-ultra
+.bin-slash {
+  font-size: 6px;
+}
+
+
+.density-ultra
+.bin-number strong {
+  font-size:
+    clamp(8px, 0.65vw, 10px);
+}
+
+
+.density-ultra
+.rack-status-line {
+  gap: 2px;
+}
+
+
+.density-ultra
+.rack-status-line strong {
+  font-size:
+    clamp(3px, 0.32vw, 5px);
+
+  letter-spacing: 0;
+}
+
+
+.density-ultra
+.rack-status-indicator {
+  width: 4px;
+  height: 4px;
+}
+
+
+.density-ultra
+.rack-status-indicator::before {
+  inset: -2px;
+}
+
+
+.density-ultra
+.stack-heading {
+  font-size: 2.5px;
+
+  letter-spacing: 0;
+}
+
+
+.density-ultra
+.bin-stack {
+  padding: 1px;
+
+  gap: 1px;
+}
+
+
+.density-ultra
+.bin-stack-row span {
+  font-size: 2px;
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+html[data-mode="dark"]
+.rack-detail-card {
+  box-shadow:
+    0 4px 12px
+    rgba(
+      0,
+      0,
+      0,
+      0.2
+    );
+}
+
+
+/* Status stays fixed */
+
+html[data-mode="dark"]
+.rack-full {
+  --rack-status-color:
+    #22c55e;
+}
+
+
+html[data-mode="dark"]
+.rack-partial {
+  --rack-status-color:
+    #facc15;
+}
+
+
+html[data-mode="dark"]
+.rack-empty {
+  --rack-status-color:
+    #f87171;
+}
+
+
+/* =========================================================
+   SMALL WIDTH
+
+   Still NO scroll.
+   Grid JS automatically recalculates columns/rows.
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .rack-details-page {
+    grid-template-rows:
+      40px
+      minmax(0, 1fr);
+
+    padding: 3px;
+  }
+
+
+  .rack-details-header {
+    gap: 6px;
+
+    padding:
+      0 3px;
+  }
+
+
+  .selected-location span {
+    font-size: 4px;
+  }
+
+
+  .selected-location h1 {
+    font-size: 14px;
+  }
+
+
+  .summary-rack-icon {
+    display: none;
+  }
+
+
+  .location-summary strong {
+    font-size: 13px;
+  }
+
+
+  .location-summary span {
+    font-size: 5px;
+  }
+
+
+  .location-bin-capacity span {
+    font-size: 4px;
+  }
+
+
+  .location-bin-capacity strong {
+    font-size: 13px;
+  }
+
+
+  .rack-details-grid {
+    gap: 2px;
+
+    padding-top: 2px;
+  }
+
+}
+
+
+/* =========================================================
+   SHORT HEIGHT
+========================================================= */
+
+@media (max-height: 700px) {
+
+  .rack-details-page {
+    grid-template-rows:
+      40px
+      minmax(0, 1fr);
+
+    padding: 3px;
+  }
+
+
+  .rack-details-grid {
+    gap: 3px;
+
+    padding-top: 3px;
+  }
+
+
+  .selected-location h1 {
+    font-size: 15px;
+  }
+
+
+  .location-summary strong {
+    font-size: 15px;
+  }
+
+
+  .location-bin-capacity strong {
+    font-size: 15px;
+  }
+
+}
+
+
+/* =========================================================
+   REMOVE EVERY POSSIBLE SCROLLBAR
+========================================================= */
+
+.rack-details-page,
+.rack-details-grid,
+.rack-detail-card {
+  scrollbar-width: none;
+}
+
+
+.rack-details-page::-webkit-scrollbar,
+.rack-details-grid::-webkit-scrollbar,
+.rack-detail-card::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .rack-detail-card,
+  .rack-orb,
+  .rack-status-indicator,
+  .rack-status-indicator::before,
+  .rack-card-bottom-line span {
+    animation: none;
+  }
+
+}

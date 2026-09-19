@@ -1,0 +1,25 @@
+HQ AUTH UPDATE
+==============
+
+Files replaced:
+1. src/pages/Login.jsx
+2. src/pages/Register.jsx
+3. src/pages/Auth.css
+4. src/assets/trmn-logo.png
+5. src/assets/auth-night-bg-hq.jpg
+
+Existing file retained:
+- src/assets/pitech-powered.png
+
+Important fixes:
+- 4K 3840x2160 auth background used by CSS.
+- Higher-resolution TRMN logo source.
+- Chrome/Edge autofill no longer turns login inputs white.
+- Login/Register pages remain fixed to viewport and do not scroll.
+- Responsive layouts for desktop, laptop, tablet and small phone sizes.
+- USER/ADMIN registration and page permissions remain unchanged.
+- Login, Remember Me, Forgot Password and route access logic remain unchanged.
+
+Run:
+npm install
+npm run dev

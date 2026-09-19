@@ -1,0 +1,357 @@
+:root {
+  --header-height: 74px;
+  --footer-height: 38px;
+  --sidebar-width: 238px;
+
+  /* ==========================================
+     THEME COLOR
+  ========================================== */
+
+  --theme-primary: #2563eb;
+  --theme-dark: #1e40af;
+  --theme-deep: #172554;
+  --theme-soft: #dbeafe;
+
+  /* ==========================================
+     LIGHT MODE
+  ========================================== */
+
+  --app-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 2.5%,
+      #f7f9fc
+    );
+
+  --surface: #ffffff;
+
+  --sidebar-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 2%,
+      #ffffff
+    );
+
+  --panel-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 2%,
+      #ffffff
+    );
+
+  --header-bg:
+    linear-gradient(
+      110deg,
+      #ffffff 0%,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 4%,
+        #ffffff
+      ) 50%,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 7%,
+        #ffffff
+      ) 100%
+    );
+
+  --footer-bg:
+    linear-gradient(
+      110deg,
+      color-mix(
+        in srgb,
+        var(--theme-primary) 3%,
+        #ffffff
+      ),
+      #ffffff
+    );
+
+  --header-text: #172033;
+  --header-subtext: #728096;
+
+  --footer-text: #64748b;
+  --footer-strong: #172033;
+
+  --subtle-bg: #f8fafc;
+  --input-bg: #ffffff;
+  --table-head: #f8fafc;
+
+  --text-primary: #172033;
+  --text-secondary: #475569;
+  --muted-text: #8492a6;
+
+  --border-color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 8%,
+      #e4eaf1
+    );
+
+  --header-border:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 15%,
+      #e5eaf1
+    );
+
+  --footer-border:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 12%,
+      #e5eaf1
+    );
+
+  --hover-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 5%,
+      #ffffff
+    );
+
+  --icon-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 6%,
+      #ffffff
+    );
+
+  --toggle-bg: #cbd5e1;
+
+  --progress-bg: #e9eef5;
+
+  --theme-soft-surface:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 10%,
+      white
+    );
+
+  --card-shadow:
+    0 5px 20px
+    rgba(15, 23, 42, 0.055);
+
+  --header-shadow:
+    0 4px 18px
+    rgba(15, 23, 42, 0.07);
+
+  --footer-shadow:
+    0 -3px 14px
+    rgba(15, 23, 42, 0.04);
+
+  --success-soft: #ecfdf5;
+  --success-text: #047857;
+  --success-border: #bbf7d0;
+}
+
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+html[data-mode="dark"] {
+  color-scheme: dark;
+
+  --app-bg:
+    color-mix(
+      in srgb,
+      var(--theme-deep) 20%,
+      #080d18
+    );
+
+  --surface:
+    color-mix(
+      in srgb,
+      var(--theme-deep) 9%,
+      #111c30
+    );
+
+  --sidebar-bg:
+    color-mix(
+      in srgb,
+      var(--theme-deep) 13%,
+      #0f172a
+    );
+
+  --panel-bg:
+    color-mix(
+      in srgb,
+      var(--theme-deep) 10%,
+      #0d1728
+    );
+
+  --header-bg:
+    linear-gradient(
+      115deg,
+      var(--theme-deep),
+      var(--theme-dark) 55%,
+      var(--theme-primary)
+    );
+
+  --footer-bg:
+    linear-gradient(
+      110deg,
+      var(--theme-deep),
+      var(--theme-dark)
+    );
+
+  --header-text: #ffffff;
+
+  --header-subtext:
+    rgba(255, 255, 255, 0.72);
+
+  --footer-text:
+    rgba(255, 255, 255, 0.72);
+
+  --footer-strong: #ffffff;
+
+  --subtle-bg: #0d1728;
+  --input-bg: #0b1424;
+  --table-head: #0c1626;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #c7d2e0;
+  --muted-text: #8291a7;
+
+  --border-color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 12%,
+      #26344a
+    );
+
+  --header-border:
+    rgba(255, 255, 255, 0.14);
+
+  --footer-border:
+    rgba(255, 255, 255, 0.1);
+
+  --hover-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 11%,
+      #17243a
+    );
+
+  --icon-bg:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 10%,
+      #18253a
+    );
+
+  --toggle-bg: #35445b;
+
+  --progress-bg: #243147;
+
+  --theme-soft-surface:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 18%,
+      #111c30
+    );
+
+  --card-shadow:
+    0 7px 24px
+    rgba(0, 0, 0, 0.2);
+
+  --header-shadow:
+    0 6px 25px
+    rgba(0, 0, 0, 0.24);
+
+  --footer-shadow:
+    0 -4px 18px
+    rgba(0, 0, 0, 0.18);
+
+  --success-soft: #082f25;
+  --success-text: #6ee7b7;
+  --success-border: #14532d;
+}
+
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    Inter,
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  background: var(--app-bg);
+
+  color: var(--text-primary);
+
+  overflow: hidden;
+
+  -webkit-font-smoothing: antialiased;
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  outline: none;
+}
+
+::selection {
+  background: var(--theme-primary);
+  color: #ffffff;
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--app-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 45%,
+      var(--border-color)
+    );
+
+  border-radius: 20px;
+}

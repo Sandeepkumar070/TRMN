@@ -1,0 +1,483 @@
+.app-header {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: var(--header-height);
+
+  z-index: 1200;
+
+  display: grid;
+
+  grid-template-columns:
+    280px
+    1fr
+    280px;
+
+  align-items: center;
+
+  padding: 0 22px;
+
+  background: var(--header-bg);
+
+  color: var(--header-text);
+
+  border-bottom:
+    1px solid
+    var(--header-border);
+
+  box-shadow:
+    var(--header-shadow);
+
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+/* ==========================================================
+   LEFT / RIGHT ZONES
+========================================================== */
+
+.header-brand-zone,
+.customer-logo-zone {
+  min-width: 0;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.header-brand-zone {
+  justify-content: flex-start;
+
+  gap: 10px;
+}
+
+
+.customer-logo-zone {
+  justify-content: flex-end;
+}
+
+
+/* ==========================================================
+   PITECH LOGO
+========================================================== */
+
+.pitech-logo {
+  width: 178px;
+
+  max-height: 58px;
+
+  object-fit: contain;
+
+  object-position: left center;
+
+  border-radius: 5px;
+
+  transition:
+    width 0.3s ease,
+    opacity 0.3s ease;
+}
+
+
+/* Dark logo */
+
+html[data-mode="dark"]
+.pitech-logo {
+  width: 185px;
+
+  border-radius: 0;
+}
+
+
+/* ==========================================================
+   CENTER TITLE
+========================================================== */
+
+.header-title-zone {
+  min-width: 0;
+
+  text-align: center;
+
+  line-height: 1.15;
+}
+
+
+.header-title-zone h1 {
+  margin: 0;
+
+  font-size:
+    clamp(
+      18px,
+      1.55vw,
+      25px
+    );
+
+  font-weight: 750;
+
+  letter-spacing: 0.3px;
+
+  color:
+    var(--header-text);
+
+  transition:
+    color 0.35s ease;
+}
+
+
+.header-title-zone p {
+  margin: 6px 0 0;
+
+  font-size: 11px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.7px;
+
+  text-transform: uppercase;
+
+  color:
+    var(--header-subtext);
+
+  transition:
+    color 0.35s ease;
+}
+
+
+/* Light-mode theme accent */
+
+html[data-mode="light"]
+.header-title-zone h1 {
+  color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 22%,
+      #172033
+    );
+}
+
+
+html[data-mode="light"]
+.header-title-zone p {
+  color:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 32%,
+      #768399
+    );
+}
+
+
+/* ==========================================================
+   SMALL THEME LINE
+========================================================== */
+
+.app-header::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  height: 2px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--theme-primary),
+      transparent
+    );
+
+  opacity: 0.65;
+}
+
+
+/* ==========================================================
+   MOBILE MENU
+========================================================== */
+
+.mobile-menu-btn {
+  display: none;
+
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid
+    var(--border-color);
+
+  border-radius: 9px;
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 7%,
+      var(--surface)
+    );
+
+  cursor: pointer;
+
+  padding: 9px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.mobile-menu-btn:hover {
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 13%,
+      var(--surface)
+    );
+}
+
+
+.mobile-menu-btn span {
+  display: block;
+
+  height: 2px;
+
+  margin: 4px 0;
+
+  border-radius: 4px;
+
+  background:
+    var(--header-text);
+}
+
+
+/* ==========================================================
+   DARK MODE MOBILE BUTTON
+========================================================== */
+
+html[data-mode="dark"]
+.mobile-menu-btn {
+  background:
+    rgba(
+      255,
+      255,
+      255,
+      0.1
+    );
+
+  border-color:
+    rgba(
+      255,
+      255,
+      255,
+      0.15
+    );
+}
+
+
+html[data-mode="dark"]
+.mobile-menu-btn span {
+  background: #ffffff;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 900px) {
+
+  .app-header {
+    grid-template-columns:
+      210px
+      1fr
+      80px;
+
+    padding:
+      0
+      14px;
+  }
+
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+
+  .pitech-logo {
+    width: 135px;
+  }
+
+
+  html[data-mode="dark"]
+  .pitech-logo {
+    width: 138px;
+  }
+}
+/* =========================================================
+   HOME BUTTON
+========================================================= */
+
+.header-home-button {
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 16px;
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--theme-primary) 25%,
+      var(--border-color)
+    );
+
+  border-radius: 10px;
+
+  color: var(--theme-primary);
+
+  background:
+    color-mix(
+      in srgb,
+      var(--theme-primary) 7%,
+      var(--surface)
+    );
+
+  font-size: 12px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.header-home-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+
+.header-home-button:hover {
+  transform:
+    translateY(-1px);
+
+  color: #ffffff;
+
+  background:
+    var(--theme-primary);
+
+  box-shadow:
+    0 6px 18px
+    color-mix(
+      in srgb,
+      var(--theme-primary) 25%,
+      transparent
+    );
+}
+
+
+/* DARK MODE */
+
+html[data-mode="dark"]
+.header-home-button {
+  color: #ffffff;
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  background:
+    rgba(255, 255, 255, 0.12);
+}
+
+
+html[data-mode="dark"]
+.header-home-button:hover {
+  background:
+    rgba(255, 255, 255, 0.22);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+
+  .header-home-button {
+    width: 35px;
+    height: 35px;
+
+    padding: 0;
+
+    border-radius: 8px;
+  }
+
+
+  .header-home-button span {
+    display: none;
+  }
+
+
+  .header-home-button svg {
+    width: 16px;
+    height: 16px;
+  }
+
+}
+
+@media (max-width: 640px) {
+
+  .app-header {
+    grid-template-columns:
+      165px
+      1fr
+      12px;
+
+    padding:
+      0
+      9px;
+  }
+
+
+  .pitech-logo {
+    width: 108px;
+  }
+
+
+  html[data-mode="dark"]
+  .pitech-logo {
+    width: 112px;
+  }
+
+
+  .header-title-zone h1 {
+    font-size: 14px;
+  }
+
+
+  .header-title-zone p {
+    display: none;
+  }
+}
